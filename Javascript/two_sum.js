@@ -11,14 +11,14 @@
 // ** return [0, 1].
 
 
-// let num = [2, 7, 11, 15];
-// let target = 9;
+let num = [2, 7, 11, 15];
+let target = 9;
 
 // let num = [2, 3, 4];
 // let target = 6;
 
-let num = [-1,0];
-let target = -1;
+// let num = [-1,0];
+// let target = -1;
 
 // *** SOLUTION No.1 ***
 function twoSum_fun1(arr, target){
@@ -42,11 +42,9 @@ function twoSum_fun2(arr, target){
         let j = arr.length - 1;
         while(k <= j){
             let mid = Math.floor( (k + j) / 2);
-            console.log("mid: ", mid, "new target: ", newTarget, " K: ",k, " j: ", j );
             if(arr[mid] === newTarget){
                 // return [k, j + 1];
                 return [i, mid];
-
             }
             else if(arr[mid] < newTarget){
                 k = mid + 1;
@@ -54,9 +52,23 @@ function twoSum_fun2(arr, target){
             else{
                 j = mid - 1;
             }
-            console.log(k, j, "k, j")
         }
     }
 }
 
-console.log(twoSum_fun2(num, target));
+// console.log(twoSum_fun2(num, target));
+
+// *** SOLUTION No.3 ***
+
+function twoSum_fun3(arr, target){
+    let map = new Map();
+    for(let i = 0; i < arr.length; i++){
+        let complement = target - arr[i];
+        if(map.has(complement)){
+            return [map.get(complement),i];
+        }
+        map.set(arr[i], i);
+    }
+}
+
+console.log(twoSum_fun3(num, target));
